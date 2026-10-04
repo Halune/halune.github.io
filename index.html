@@ -50,6 +50,11 @@
   <nav class="lang" aria-label="Langue / Language">
     <button id="btn-fr" class="on" onclick="setLang('fr')">Français</button>
     <button id="btn-en" onclick="setLang('en')">English</button>
+    <button id="btn-de" onclick="setLang('de')">Deutsch</button>
+    <button id="btn-es" onclick="setLang('es')">Español</button>
+    <button id="btn-it" onclick="setLang('it')">Italiano</button>
+    <button id="btn-zh" onclick="setLang('zh')">中文</button>
+    <button id="btn-ar" onclick="setLang('ar')">العربية</button>
   </nav>
 
   <main id="fr">
@@ -180,27 +185,362 @@
     <strong>Email:</strong> <a id="mail-en" href="mailto:CONTACT">CONTACT</a></p>
   </main>
 
+
+<main id="de" hidden>
+    <p class="lead">Halune verwandelt ein altes Handy in ein Video-Babyphone – nach einem einfachen Prinzip: <strong>Was bei Ihnen zu Hause passiert, bleibt bei Ihnen zu Hause.</strong> Diese Erklärung ist kurz, weil es fast nichts offenzulegen gibt – und genau das ist gewollt.</p>
+
+    <h2>Das Wichtigste in einem Satz</h2>
+    <p>Halune erhebt, speichert und übermittelt <strong>keinerlei personenbezogene Daten</strong> – weder an uns (den Entwickler) noch an Dritte. Alles läuft direkt zwischen Ihren eigenen Handys, in Ihrem eigenen Netzwerk.</p>
+
+    <h2>So funktioniert Halune</h2>
+    <ul>
+      <li>Video und Ton laufen <strong>direkt zwischen Ihren beiden Handys</strong>, von Gerät zu Gerät in Ihrem lokalen WLAN, über eine <strong>Ende-zu-Ende-verschlüsselte</strong> Verbindung (auch der Verbindungsaufbau zwischen den Geräten ist verschlüsselt).</li>
+      <li>Es gibt <strong>keinen Server des Entwicklers</strong>: Wir leiten Ihre Streams nicht weiter, wir speichern sie nicht, und wir können technisch gar nicht auf sie zugreifen.</li>
+      <li>Halune funktioniert <strong>auch ohne Internet</strong>: Ein lokales WLAN genügt.</li>
+      <li>Kein Konto, keine Registrierung, keine Werbung, keine Tracker, keine Analyse-Tools, keine Datensammel-SDKs von Drittanbietern.</li>
+    </ul>
+
+    <h2>Welche Daten wir erheben</h2>
+    <p>Keine. Konkret heißt das:</p>
+    <ul>
+      <li>Wir fragen <strong>weder nach einem Namen noch nach einer E-Mail-Adresse noch nach einem Konto</strong>.</li>
+      <li>Wir setzen <strong>keinerlei Analyse-Dienste und kein Werbe-Tracking</strong> ein.</li>
+      <li>Wir erhalten <strong>keine Bilder, keinen Ton und keine Ereignisprotokolle</strong>: All das bleibt auf Ihren Geräten.</li>
+      <li>Die Einstellungen der App (Zimmername, Empfindlichkeit der Alarme usw.) werden <strong>ausschließlich auf Ihren Handys</strong> gespeichert.</li>
+    </ul>
+
+    <h2>Die Bilder und Geräusche Ihres Kindes</h2>
+    <p>Die Video- und Audiostreams aus dem Zimmer Ihres Kindes verlassen <strong>niemals Ihr Zuhause</strong>, es sei denn, Sie aktivieren selbst den Fernzugriff (siehe unten) – und selbst dann bleibt die Verbindung direkt zwischen Ihren Geräten, ohne Umweg über eine Cloud. Zu keinem Zeitpunkt verarbeitet, sieht oder speichert der Entwickler Daten, die Ihr Kind betreffen.</p>
+
+    <h2>Angeforderte Android-Berechtigungen – und warum</h2>
+    <table>
+      <tr><th>Berechtigung</th><th>Warum Halune sie braucht</th></tr>
+      <tr><td>Kamera</td><td>Um das Zimmer zu filmen – ausschließlich auf dem Handy, das beim Baby steht.</td></tr>
+      <tr><td>Mikrofon</td><td>Um Ihr Baby zu hören (Kinderzimmer-Handy) und ihm zu antworten (Eltern-Handy, Gegensprechen und Gesprächsmodus).</td></tr>
+      <tr><td>Benachrichtigungen</td><td>Um Sie bei Weinen, Bewegung, schwachem Akku oder Verbindungsabbruch zu alarmieren – auch bei gesperrtem Bildschirm.</td></tr>
+      <tr><td>Vordergrunddienst<br>(Kamera, Mikrofon, Wiedergabe)</td><td>Um Überwachung und Hören die ganze Nacht aktiv zu halten – auch bei ausgeschaltetem Bildschirm oder wenn die App im Hintergrund läuft – und um Schlaflieder abzuspielen.</td></tr>
+      <tr><td>Lokales Netzwerk / Internet</td><td>Um Ihre Handys über Ihr WLAN miteinander zu verbinden. Das Internet wird nur genutzt, wenn Sie selbst den Fernzugriff aktivieren.</td></tr>
+      <tr><td>Akku-Optimierung ignorieren <em>(optional)</em></td><td>Wird über einen Systemdialog angefordert, damit Android die Überwachung nicht mitten in der Nacht unterbricht. Sie können ablehnen.</td></tr>
+      <tr><td>Über anderen Apps einblenden <em>(optional)</em></td><td>Erlaubt dem Überwachungsbildschirm, sich nach einem möglichen Absturz von selbst wieder zu öffnen. Wird nie für andere Zwecke verwendet.</td></tr>
+    </table>
+    <p>Keine Berechtigung wird für andere als die oben beschriebenen Zwecke verwendet.</p>
+
+    <h2>Optionale Funktionen – immer nur auf Ihre Initiative</h2>
+    <ul>
+      <li><strong>Fernzugriff (Premium)</strong>: Damit sehen Sie das Zimmer auch unterwegs (4G/5G). Die Verbindung bleibt direkt, von Handy zu Handy, über Ihren eigenen Router – ohne zwischengeschaltete Cloud. Wenn Sie eine DynDNS-Adresse hinterlegen, sendet die App Anfragen an den DynDNS-Dienst, <strong>den Sie selbst ausgewählt haben</strong>; für diese Anfragen gelten dann die Bedingungen dieses Dienstes, nicht unsere.</li>
+      <li><strong>Stream für Home Assistant (Premium)</strong>: Wenn Sie Halune mit Ihrem Home Assistant verbinden, wird das Zugriffstoken <strong>lokal auf Ihrem Gerät</strong> gespeichert, und der verschlüsselte Stream wird ausschließlich an <strong>Ihren</strong> Server geschickt – bei Ihnen zu Hause.</li>
+      <li><strong>Eigene Schlaflieder (Premium)</strong>: Ihre Audiodateien werden lokal abgespielt und niemals über Ihre Geräte hinaus übertragen.</li>
+      <li><strong>Schnappschüsse und Clips (Premium)</strong>: Bilder und Clips werden <strong>lokal auf dem Eltern-Handy</strong> gespeichert. Nur Sie können sie ansehen, behalten oder löschen. Auch das Ereignisprotokoll (Text, kostenlos) bleibt lokal.</li>
+    </ul>
+
+    <h2>Premium-Kauf</h2>
+    <p>Der Premium-Kauf (Einmalzahlung) wird vollständig über <strong>Google Play</strong> abgewickelt. Wir sehen und speichern keinerlei Zahlungsdaten (Kartendaten, Adresse usw.). Für die Verarbeitung dieser Daten gilt die Datenschutzerklärung von Google.</p>
+
+    <h2>Ihre Rechte (DSGVO)</h2>
+    <p>Die Datenschutz-Grundverordnung gibt Ihnen Rechte auf Auskunft, Berichtigung, Löschung und Übertragbarkeit der Daten, die ein Anbieter über Sie gespeichert hat. Da Halune <strong>keinerlei</strong> Daten erhebt, gibt es auf unserer Seite schlicht nichts einzusehen, zu berichtigen, zu exportieren oder zu löschen: Diese Rechte gehen in der Praxis ins Leere. Sie können sich dennoch jederzeit mit Fragen an uns wenden und sich bei der Datenschutzbehörde Ihres Landes beschweren, wenn Sie der Ansicht sind, dass Ihre Rechte nicht gewahrt werden.</p>
+
+    <h2>Kinder</h2>
+    <p>Halune ist eine App für Eltern und die Erwachsenen im Haushalt. Sie filmt zwar ein Kind, aber <strong>der Entwickler verarbeitet keinerlei Daten über dieses Kind</strong>: Die Bilder bleiben zwischen den Handys Ihres Haushalts.</p>
+
+    <h2>Änderungen an dieser Erklärung</h2>
+    <p>Sollte sich die App eines Tages so weiterentwickeln, dass sich etwas am oben Beschriebenen ändert, wird diese Seite aktualisiert und das Datum oben im Dokument angepasst. Unser grundlegendes Versprechen – keine Datenerhebung, kein Server, keine Tracker – wird sich nicht ändern.</p>
+
+    <h2>Kontakt</h2>
+    <p>Bei Fragen zu dieser Erklärung oder zur App:<br>
+    <strong>E-Mail:</strong> <a id="mail-de" href="mailto:CONTACT">CONTACT</a></p>
+  </main>
+
+<main id="es" hidden>
+    <p class="lead">Halune convierte un teléfono antiguo en un vigilabebés con vídeo, en torno a un principio sencillo: <strong>lo que pasa en tu casa se queda en tu casa</strong>. Esta política es breve porque apenas hay nada que contar — y así lo hemos querido.</p>
+
+    <h2>Lo esencial en una frase</h2>
+    <p>Halune no recopila, no almacena y no transmite <strong>ningún dato personal</strong>: ni a nosotros (el desarrollador) ni a terceros. Todo ocurre directamente entre tus propios teléfonos, dentro de tu propia red.</p>
+
+    <h2>Cómo funciona Halune</h2>
+    <ul>
+      <li>El vídeo y el sonido viajan <strong>directamente entre tus dos teléfonos</strong>, de igual a igual dentro de tu red WiFi local, a través de una conexión <strong>cifrada de extremo a extremo</strong> (el emparejamiento entre los dispositivos también está cifrado).</li>
+      <li>No existe <strong>ningún servidor del desarrollador</strong>: no retransmitimos tu vídeo ni tu sonido, no los almacenamos y, técnicamente, no podemos acceder a ellos.</li>
+      <li>Halune funciona <strong>incluso sin Internet</strong>: basta con una red WiFi local.</li>
+      <li>Sin cuentas, sin registro, sin publicidad, sin rastreadores, sin herramientas de analítica y sin SDK de terceros que recopilen datos.</li>
+    </ul>
+
+    <h2>Los datos que recopilamos</h2>
+    <p>Ninguno. En la práctica:</p>
+    <ul>
+      <li>No te pedimos <strong>ni nombre, ni correo electrónico, ni cuenta</strong>.</li>
+      <li>No utilizamos <strong>ningún servicio de analítica ni de seguimiento publicitario</strong>.</li>
+      <li>No recibimos <strong>ninguna imagen, ningún sonido ni ningún registro de eventos</strong>: todo eso se queda en tus dispositivos.</li>
+      <li>Los ajustes de la aplicación (nombre de la habitación, sensibilidad de las alertas, etc.) se guardan <strong>únicamente en tus teléfonos</strong>.</li>
+    </ul>
+
+    <h2>Las imágenes y los sonidos de tu hijo</h2>
+    <p>Los flujos de vídeo y audio de la habitación de tu hijo no salen <strong>nunca de tu casa</strong>, salvo que tú mismo actives el acceso remoto (ver más abajo) — e incluso en ese caso, la conexión sigue siendo directa entre tus dispositivos, sin pasar por ninguna nube. En ningún momento el desarrollador trata, ve o conserva datos sobre tu hijo.</p>
+
+    <h2>Permisos de Android solicitados, y por qué</h2>
+    <table>
+      <tr><th>Permiso</th><th>Por qué lo necesita Halune</th></tr>
+      <tr><td>Cámara</td><td>Filmar la habitación, únicamente en el teléfono colocado junto al bebé.</td></tr>
+      <tr><td>Micrófono</td><td>Oír a tu bebé (teléfono de la habitación) y hablarle (teléfono de los padres, funciones «háblale a tu bebé» y conversación).</td></tr>
+      <tr><td>Notificaciones</td><td>Avisarte en caso de llanto, movimiento, batería baja o pérdida de conexión, incluso con la pantalla bloqueada.</td></tr>
+      <tr><td>Servicio en primer plano<br>(cámara, micrófono, reproducción)</td><td>Mantener la vigilancia y la escucha activas durante toda la noche, incluso con la pantalla apagada o la aplicación en segundo plano, y reproducir las nanas.</td></tr>
+      <tr><td>Red local / Internet</td><td>Conectar tus teléfonos entre sí a través de tu WiFi. Internet solo se usa si tú mismo activas el acceso remoto.</td></tr>
+      <tr><td>Optimización de batería <em>(opcional)</em></td><td>Se solicita mediante un cuadro de diálogo del sistema para que Android no interrumpa la vigilancia en mitad de la noche. Puedes rechazarla.</td></tr>
+      <tr><td>Mostrar sobre otras apps <em>(opcional)</em></td><td>Permite que la pantalla de vigilancia vuelva a abrirse por sí sola tras un posible fallo de la aplicación. Nunca se utiliza para otros fines.</td></tr>
+    </table>
+    <p>Ningún permiso se utiliza con fines distintos de los descritos más arriba.</p>
+
+    <h2>Funciones opcionales — siempre por decisión tuya</h2>
+    <ul>
+      <li><strong>Acceso remoto (Premium)</strong>: te permite ver la habitación cuando estás fuera de casa (4G/5G). La conexión sigue siendo directa, de teléfono a teléfono, a través de tu propio router — sin ninguna nube intermediaria. Si introduces una dirección DynDNS, la aplicación envía solicitudes al servicio DynDNS <strong>que tú mismo has elegido</strong>; esas solicitudes quedan entonces sujetas a las condiciones de ese servicio, no a las nuestras.</li>
+      <li><strong>Flujo Home Assistant (Premium)</strong>: si conectas Halune a tu servidor Home Assistant, el token de acceso se guarda <strong>localmente en tu dispositivo</strong> y el flujo cifrado se envía únicamente a <strong>tu</strong> servidor, en tu casa.</li>
+      <li><strong>Nanas personalizadas (Premium)</strong>: tus archivos de audio se reproducen localmente y nunca se transmiten fuera de tus dispositivos.</li>
+      <li><strong>Capturas y clips (Premium)</strong>: las imágenes y los clips se guardan <strong>localmente en el teléfono de los padres</strong>. Solo tú los ves, los conservas o los eliminas. El registro de eventos (texto, gratuito) también se queda en tu dispositivo.</li>
+    </ul>
+
+    <h2>Compra Premium</h2>
+    <p>La compra Premium (pago único) la gestiona íntegramente <strong>Google Play</strong>. Nosotros no vemos ni almacenamos ningún dato de pago (tarjeta bancaria, dirección, etc.). El tratamiento de esos datos se rige por la política de privacidad de Google.</p>
+
+    <h2>Tus derechos (RGPD)</h2>
+    <p>El Reglamento General de Protección de Datos te otorga derechos de acceso, rectificación, supresión y portabilidad sobre los datos que un desarrollador tenga sobre ti. Como Halune no recopila <strong>ningún</strong> dato, sencillamente no hay nada que consultar, corregir, exportar ni eliminar por nuestra parte: en la práctica, estos derechos quedan sin objeto. Aun así, puedes escribirnos para cualquier consulta y presentar una reclamación ante la autoridad de protección de datos de tu país si consideras que no se están respetando tus derechos.</p>
+
+    <h2>Menores</h2>
+    <p>Halune es una aplicación destinada a los padres y a los adultos del hogar. Filma a un niño, pero <strong>el desarrollador no trata ningún dato sobre él</strong>: las imágenes se quedan entre los teléfonos de tu hogar.</p>
+
+    <h2>Cambios en esta política</h2>
+    <p>Si la aplicación evoluciona de una forma que modifique lo anterior, esta página se actualizará y se revisará la fecha que figura en la parte superior del documento. Nuestro compromiso de fondo — sin recopilación, sin servidores, sin rastreadores — no cambiará.</p>
+
+    <h2>Contacto</h2>
+    <p>Para cualquier consulta sobre esta política o sobre la aplicación:<br>
+    <strong>Correo electrónico:</strong> <a id="mail-es" href="mailto:CONTACT">CONTACT</a></p>
+  </main>
+
+<main id="it" hidden>
+    <!-- Sous-titre (subtitle) : "Informativa sulla privacy — ultimo aggiornamento: 4 ottobre 2026" -->
+    <p class="lead">Halune trasforma un vecchio telefono in un baby monitor video, costruito attorno a un principio semplice: <strong>quello che succede a casa tua resta a casa tua</strong>. Questa informativa è breve, perché non c'è quasi nulla da dire — ed è così per scelta.</p>
+
+    <h2>L'essenziale in una frase</h2>
+    <p>Halune non raccoglie, non memorizza e non trasmette <strong>alcun dato personale</strong> — né a noi (lo sviluppatore), né a terzi. Tutto avviene direttamente tra i tuoi telefoni, sulla tua rete.</p>
+
+    <h2>Come funziona Halune</h2>
+    <ul>
+      <li>Video e audio viaggiano <strong>direttamente tra i tuoi due telefoni</strong>, in peer-to-peer sulla tua rete Wi-Fi locale, attraverso una connessione <strong>crittografata end-to-end</strong> (anche l'abbinamento tra i dispositivi è crittografato).</li>
+      <li>Non esiste <strong>alcun server dello sviluppatore</strong>: non inoltriamo i tuoi flussi, non li conserviamo e tecnicamente non possiamo accedervi.</li>
+      <li>Halune funziona <strong>anche senza Internet</strong>: basta una rete Wi-Fi locale.</li>
+      <li>Niente account, niente registrazione, niente pubblicità, niente tracker, niente statistiche di utilizzo, niente SDK di terze parti che raccolgono dati.</li>
+    </ul>
+
+    <h2>I dati che raccogliamo</h2>
+    <p>Nessuno. In concreto:</p>
+    <ul>
+      <li>Non chiediamo <strong>né nome, né e-mail, né account</strong>.</li>
+      <li>Non utilizziamo <strong>alcun servizio di analisi né di tracciamento pubblicitario</strong>.</li>
+      <li>Non riceviamo <strong>nessuna immagine, nessun suono, nessun registro degli eventi</strong>: tutto questo resta sui tuoi dispositivi.</li>
+      <li>Le impostazioni dell'app (nome della cameretta, sensibilità degli avvisi, ecc.) vengono salvate <strong>solo sui tuoi telefoni</strong>.</li>
+    </ul>
+
+    <h2>Le immagini e i suoni del tuo bambino</h2>
+    <p>I flussi video e audio della cameretta del tuo bambino non escono <strong>mai da casa tua</strong>, a meno che non sia tu stesso ad attivare l'accesso remoto (vedi più avanti) — e anche in quel caso la connessione resta diretta tra i tuoi dispositivi, senza passare da alcun cloud. In nessun momento lo sviluppatore tratta, vede o conserva dati riguardanti il tuo bambino.</p>
+
+    <h2>Autorizzazioni Android richieste, e perché</h2>
+    <table>
+      <tr><th>Autorizzazione</th><th>Perché Halune ne ha bisogno</th></tr>
+      <tr><td>Fotocamera</td><td>Riprendere la cameretta, solo sul telefono posizionato accanto al bebè.</td></tr>
+      <tr><td>Microfono</td><td>Sentire il tuo bebè (telefono nella cameretta) e rispondergli con la voce (telefono dei genitori, funzioni «rispondi al bebè» e conversazione).</td></tr>
+      <tr><td>Notifiche</td><td>Avvisarti in caso di pianto, movimento, batteria scarica o perdita di connessione, anche a schermo bloccato.</td></tr>
+      <tr><td>Servizio in primo piano<br>(fotocamera, microfono, riproduzione)</td><td>Mantenere attivi la sorveglianza e l'ascolto per tutta la notte, anche a schermo spento o con l'app in secondo piano, e riprodurre le ninne nanne.</td></tr>
+      <tr><td>Rete locale / Internet</td><td>Collegare i tuoi telefoni tra loro sul tuo Wi-Fi. Internet viene usato solo se sei tu ad attivare l'accesso remoto.</td></tr>
+      <tr><td>Ottimizzazione della batteria <em>(facoltativa)</em></td><td>Richiesta tramite una finestra di dialogo di sistema, perché Android non interrompa la sorveglianza nel cuore della notte. Puoi rifiutare.</td></tr>
+      <tr><td>Visualizzazione sopra altre app <em>(facoltativa)</em></td><td>Permettere alla schermata di sorveglianza di riaprirsi da sola dopo un eventuale arresto anomalo. Mai usata per altri scopi.</td></tr>
+    </table>
+    <p>Nessuna autorizzazione viene usata per scopi diversi da quelli descritti qui sopra.</p>
+
+    <h2>Funzioni opzionali — sempre su tua iniziativa</h2>
+    <ul>
+      <li><strong>Accesso remoto (Premium)</strong>: ti permette di vedere la cameretta quando sei fuori casa (4G/5G). La connessione resta diretta, da telefono a telefono, attraverso il tuo router di casa — nessun cloud intermedio. Se inserisci un indirizzo DynDNS, l'app invia richieste al servizio DynDNS <strong>che hai scelto tu stesso</strong>; quelle richieste sono quindi soggette alle condizioni di quel servizio, non alle nostre.</li>
+      <li><strong>Flusso Home Assistant (Premium)</strong>: se colleghi Halune al tuo server Home Assistant, il token di accesso viene salvato <strong>localmente sul tuo dispositivo</strong> e il flusso crittografato viene inviato solo al <strong>tuo</strong> server, a casa tua.</li>
+      <li><strong>Ninne nanne personalizzate (Premium)</strong>: i tuoi file audio vengono riprodotti localmente e non vengono mai trasmessi al di fuori dei tuoi dispositivi.</li>
+      <li><strong>Foto e clip (Premium)</strong>: le immagini e i clip vengono salvati <strong>localmente sul telefono dei genitori</strong>. Solo tu puoi consultarli, conservarli o eliminarli. Anche il registro degli eventi (testuale, gratuito) resta locale.</li>
+    </ul>
+
+    <h2>Acquisto Premium</h2>
+    <p>L'acquisto Premium (pagamento unico) è gestito interamente da <strong>Google Play</strong>. Non vediamo né memorizziamo alcun dato di pagamento (carta, indirizzo di fatturazione, ecc.). Il trattamento di questi dati è disciplinato dall'informativa sulla privacy di Google.</p>
+
+    <h2>I tuoi diritti (GDPR)</h2>
+    <p>Il Regolamento generale sulla protezione dei dati ti riconosce diritti di accesso, rettifica, cancellazione e portabilità sui dati che uno sviluppatore detiene su di te. Poiché Halune non raccoglie <strong>alcun</strong> dato, da parte nostra non c'è semplicemente nulla da consultare, correggere, esportare o eliminare: nella pratica questi diritti non trovano applicazione. Puoi comunque scriverci per qualsiasi domanda e presentare un reclamo all'autorità per la protezione dei dati del tuo Paese se ritieni che i tuoi diritti non siano rispettati.</p>
+
+    <h2>Bambini</h2>
+    <p>Halune è un'app destinata ai genitori e agli adulti di casa. Riprende un bambino, ma <strong>nessun dato che lo riguarda viene trattato dallo sviluppatore</strong>: le immagini restano tra i telefoni di casa tua.</p>
+
+    <h2>Modifiche a questa informativa</h2>
+    <p>Se l'app dovesse evolvere in un modo che cambia quanto descritto sopra, questa pagina verrà aggiornata e la data in cima al documento modificata. Il nostro impegno di fondo — nessuna raccolta, nessun server, nessun tracker — non cambierà.</p>
+
+    <h2>Contatti</h2>
+    <p>Per qualsiasi domanda su questa informativa o sull'app:<br>
+    <strong>E-mail:</strong> <a id="mail-it" href="mailto:CONTACT">CONTACT</a></p>
+  </main>
+
+<main id="zh" hidden>
+    <!-- Sous-titre zh pour le script setLang : 隐私政策——最后更新：2026年10月4日 -->
+    <p class="lead">Halune 把一台旧手机变成视频婴儿监视器，背后只有一个简单的原则：<strong>发生在您家里的事，只留在您家里</strong>。这份隐私政策很短，因为几乎没有什么需要交代的——而这正是我们有意为之。</p>
+
+    <h2>一句话概括</h2>
+    <p>Halune 不收集、不存储、也不传输<strong>任何个人数据</strong>——既不传给我们（开发者），也不传给任何第三方。一切都直接发生在您自己的手机之间、您自己的网络之中。</p>
+
+    <h2>Halune 的工作方式</h2>
+    <ul>
+      <li>视频和声音<strong>直接在您的两台手机之间</strong>传输，通过家中本地 WiFi 点对点直连，连接采用<strong>端到端加密</strong>（设备之间的配对过程同样加密）。</li>
+      <li><strong>不存在开发者的服务器</strong>：我们不中转您的画面和声音，不存储它们，技术上也无法访问它们。</li>
+      <li>Halune <strong>没有互联网也能用</strong>：有本地 WiFi 网络就足够了。</li>
+      <li>没有账号，无需注册，没有广告，没有跟踪器，没有统计分析工具，也没有任何用于数据收集的第三方 SDK。</li>
+    </ul>
+
+    <h2>我们收集的数据</h2>
+    <p>一项也没有。具体来说：</p>
+    <ul>
+      <li>我们<strong>不要求姓名、邮箱，也不要求注册账号</strong>。</li>
+      <li>我们<strong>不使用任何统计分析或广告跟踪</strong>。</li>
+      <li>我们<strong>不会收到任何图像、声音或事件日志</strong>：这些全部留在您的设备上。</li>
+      <li>应用设置（房间名称、提醒灵敏度等）<strong>只保存在您的手机上</strong>。</li>
+    </ul>
+
+    <h2>您孩子的画面和声音</h2>
+    <p>来自孩子房间的视频和音频<strong>永远不会离开您的家</strong>，除非您自己开启了远程访问（见下文）——即便如此，连接依然是您的设备之间的直连，不经过任何云端。开发者在任何时候都不会处理、查看或保存与您孩子有关的任何数据。</p>
+
+    <h2>申请的 Android 权限及原因</h2>
+    <table>
+      <tr><th>权限</th><th>Halune 为什么需要它</th></tr>
+      <tr><td>相机</td><td>拍摄房间画面，且仅在放置于宝宝一侧的手机上使用。</td></tr>
+      <tr><td>麦克风</td><td>听到宝宝的声音（宝宝房间端手机），并向宝宝回应（家长端手机，用于“对讲”与双向对话功能）。</td></tr>
+      <tr><td>通知</td><td>在宝宝哭闹、有动静、电量不足或连接断开时提醒您，锁屏状态下也能收到。</td></tr>
+      <tr><td>前台服务<br>（相机、麦克风、播放）</td><td>即使屏幕熄灭或应用退到后台，也让监护和监听整夜保持运行，并播放摇篮曲。</td></tr>
+      <tr><td>本地网络 / 互联网</td><td>让您的两台手机通过家中 WiFi 互相连接。只有当您自己开启远程访问时，才会用到互联网。</td></tr>
+      <tr><td>忽略电池优化 <em>（可选）</em></td><td>通过系统对话框征求您的同意，以免 Android 在半夜中断监护。您可以拒绝。</td></tr>
+      <tr><td>在其他应用的上层显示 <em>（可选）</em></td><td>让监护画面在偶发崩溃后能够自行重新打开。绝不用于任何其他目的。</td></tr>
+    </table>
+    <p>所有权限都只用于上述用途，绝不挪作他用。</p>
+
+    <h2>可选功能——始终由您主动开启</h2>
+    <ul>
+      <li><strong>远程访问（高级版 Premium）</strong>：让您在外出时（4G/5G）也能查看宝宝房间。连接依然是手机到手机的直连，经由您自己家的路由器——没有中间云端。如果您填写了 DynDNS 地址，应用会向<strong>您自己选择的</strong> DynDNS 服务发送请求；这些请求届时适用该服务的条款，而非我们的条款。</li>
+      <li><strong>Home Assistant 视频流（高级版 Premium）</strong>：如果您将 Halune 接入自己的 Home Assistant 服务器，访问令牌只会<strong>存储在您的设备本地</strong>，加密视频流也只发送到<strong>您自己</strong>家中的服务器。</li>
+      <li><strong>自定义摇篮曲（高级版 Premium）</strong>：您的音频文件在本地播放，绝不会被传输到您的设备之外。</li>
+      <li><strong>抓拍与视频片段（高级版 Premium）</strong>：图片和视频片段<strong>保存在家长端手机本地</strong>。只有您自己可以查看、保留或删除它们。事件日志（纯文本，免费功能）同样只保存在本地。</li>
+    </ul>
+
+    <h2>高级版（Premium）购买</h2>
+    <p>高级版为一次性付费，购买流程完全由 <strong>Google Play</strong> 处理。我们看不到、也不会存储任何支付数据（银行卡、账单地址等）。这些数据的处理适用 Google 的隐私政策。</p>
+
+    <h2>您的权利（GDPR）</h2>
+    <p>对于开发者所持有的与您有关的个人数据，《通用数据保护条例》赋予您访问、更正、删除和携带（导出）等权利。由于 Halune <strong>不收集任何</strong>数据，我们这边根本没有任何内容可供查阅、更正、导出或删除：这些权利在实践中并无适用对象。尽管如此，如有任何疑问，仍欢迎随时写信给我们；如果您认为自己的权利未得到尊重，也可以向您所在国家或地区的数据保护机构提出投诉。</p>
+
+    <h2>儿童</h2>
+    <p>Halune 是一款面向父母及家中成年人的应用。它拍摄的对象是孩子，但<strong>开发者绝不处理任何与孩子有关的数据</strong>：画面只在您家中的手机之间传输。</p>
+
+    <h2>本政策的变更</h2>
+    <p>如果应用日后的变化影响到上述内容，本页面将会更新，页首的日期也会随之修改。我们的核心承诺——不收集、无服务器、无跟踪器——不会改变。</p>
+
+    <h2>联系我们</h2>
+    <p>如对本政策或应用有任何疑问，欢迎联系我们：<br>
+    <strong>电子邮箱：</strong><a id="mail-zh" href="mailto:CONTACT">CONTACT</a></p>
+  </main>
+
+<main id="ar" hidden>
+    <p class="lead">يحوّل «هالون» (Halune) هاتفاً قديماً إلى جهاز مراقبة الطفل بالفيديو، انطلاقاً من مبدأ بسيط: <strong>ما يحدث في بيتك يبقى في بيتك</strong>. هذه السياسة قصيرة، لأنه لا يكاد يوجد ما يُقال — وهذا مقصود.</p>
+
+    <h2>الخلاصة في جملة واحدة</h2>
+    <p>لا يجمع هالون <strong>أي بيانات شخصية</strong> ولا يخزّنها ولا ينقلها — لا إلينا (نحن المطوّر) ولا إلى أي طرف آخر. كل شيء يجري مباشرةً بين هواتفك أنت، وعلى شبكتك الخاصة.</p>
+
+    <h2>كيف يعمل هالون</h2>
+    <ul>
+      <li>ينتقل الفيديو والصوت <strong>مباشرةً بين هاتفيك</strong>، من نظير إلى نظير عبر شبكة الواي فاي المحلية لديك، من خلال اتصال <strong>مشفّر من طرف إلى طرف</strong> (حتى عملية الربط بين الجهازين مشفّرة هي الأخرى).</li>
+      <li>لا يوجد <strong>أي خادم لدى المطوّر</strong>: فنحن لا نمرّر بثّك عبرنا، ولا نخزّنه، ولا نستطيع تقنياً الوصول إليه أصلاً.</li>
+      <li>يعمل هالون <strong>حتى من دون إنترنت</strong>: تكفي شبكة واي فاي محلية.</li>
+      <li>لا حساب، ولا تسجيل، ولا إعلانات، ولا أدوات تتبّع، ولا أدوات تحليلات، ولا حِزم برمجية خارجية (SDK) لجمع البيانات.</li>
+    </ul>
+
+    <h2>البيانات التي نجمعها</h2>
+    <p>لا شيء. وعملياً:</p>
+    <ul>
+      <li>لا نطلب منك <strong>اسماً ولا بريداً إلكترونياً ولا حساباً</strong>.</li>
+      <li>لا نستخدم <strong>أي أدوات تحليلات أو تتبّع إعلاني من أي نوع</strong>.</li>
+      <li>لا نتلقّى <strong>أي صور ولا أصوات ولا سجلّات أحداث</strong>: كل ذلك يبقى على أجهزتك.</li>
+      <li>إعدادات التطبيق (اسم الغرفة، حساسية التنبيهات، وغير ذلك) تُحفظ <strong>على هواتفك فقط</strong>.</li>
+    </ul>
+
+    <h2>صور طفلك وأصواته</h2>
+    <p>لا يغادر بثّ الفيديو والصوت من غرفة طفلك <strong>بيتك أبداً</strong>، إلا إذا فعّلتَ بنفسك الوصول عن بُعد (انظر أدناه) — وحتى في هذه الحالة يبقى الاتصال مباشراً بين أجهزتك، من دون المرور بأي سحابة. لا يعالج المطوّر في أي لحظة أي بيانات تخصّ طفلك، ولا يطّلع عليها، ولا يحتفظ بها.</p>
+
+    <h2>أذونات أندرويد المطلوبة، ولماذا</h2>
+    <table>
+      <tr><th>الإذن</th><th>لماذا يحتاج إليه هالون</th></tr>
+      <tr><td>الكاميرا</td><td>لتصوير الغرفة، على الهاتف الموضوع إلى جانب الطفل فقط.</td></tr>
+      <tr><td>الميكروفون</td><td>لسماع طفلك (هاتف الغرفة) والردّ عليه (هاتف الوالدين، عبر خاصيتَي «الردّ على الطفل» والمحادثة).</td></tr>
+      <tr><td>الإشعارات</td><td>لتنبيهك عند البكاء أو الحركة أو انخفاض البطارية أو انقطاع الاتصال، حتى والشاشة مقفلة.</td></tr>
+      <tr><td>خدمة تعمل في المقدمة<br>(الكاميرا والميكروفون والتشغيل)</td><td>لإبقاء المراقبة والاستماع نشطَين طوال الليل، حتى مع انطفاء الشاشة أو انتقال التطبيق إلى الخلفية، ولتشغيل التهويدات.</td></tr>
+      <tr><td>الشبكة المحلية / الإنترنت</td><td>لربط هواتفك بعضها ببعض عبر شبكة الواي فاي لديك. ولا يُستخدم الإنترنت إلا إذا فعّلتَ بنفسك الوصول عن بُعد.</td></tr>
+      <tr><td>تجاهل تحسينات البطارية <em>(اختياري)</em></td><td>يُطلب عبر مربع حوار تابع للنظام حتى لا يقطع أندرويد المراقبة في منتصف الليل. ويمكنك الرفض.</td></tr>
+      <tr><td>الظهور فوق التطبيقات الأخرى <em>(اختياري)</em></td><td>يتيح لشاشة المراقبة أن تعيد فتح نفسها تلقائياً بعد تعطّل محتمل. ولا يُستخدم أبداً لأي غرض آخر.</td></tr>
+    </table>
+    <p>لا يُستخدم أي إذن لأي غرض آخر غير الأغراض الموصوفة أعلاه.</p>
+
+    <h2>ميزات اختيارية — بمبادرة منك دائماً</h2>
+    <ul>
+      <li><strong>الوصول عن بُعد (Premium)</strong>: يتيح لك رؤية الغرفة وأنت خارج البيت (عبر 4G/5G). يبقى الاتصال مباشراً، من هاتف إلى هاتف، عبر جهاز التوجيه الخاص بك — من دون أي سحابة وسيطة. وإذا أدخلتَ عنوان DynDNS، فإن التطبيق يرسل طلبات إلى خدمة DynDNS <strong>التي اخترتَها بنفسك</strong>؛ وتخضع هذه الطلبات عندئذٍ لشروط تلك الخدمة، لا لشروطنا.</li>
+      <li><strong>بث Home Assistant (Premium)</strong>: إذا ربطتَ هالون بخادم Home Assistant الخاص بك، فإن رمز الوصول يُخزَّن <strong>محلياً على جهازك</strong>، ولا يُرسَل البث المشفّر إلا إلى خادمك <strong>أنت</strong>، في بيتك.</li>
+      <li><strong>تهويدات مخصّصة (Premium)</strong>: تُشغَّل ملفاتك الصوتية محلياً، ولا تُنقل أبداً خارج أجهزتك.</li>
+      <li><strong>اللقطات والمقاطع (Premium)</strong>: تُحفظ الصور والمقاطع <strong>محلياً على هاتف الوالدين</strong>. أنت وحدك من يطّلع عليها ويحتفظ بها أو يحذفها. ويبقى سجلّ الأحداث (نصّي ومجاني) محلياً هو الآخر.</li>
+    </ul>
+
+    <h2>شراء النسخة المميزة (Premium)</h2>
+    <p>شراء النسخة المميزة (Premium) — وهو دفعة واحدة — يتولى <strong>Google Play</strong> إدارته بالكامل. فنحن لا نرى ولا نخزّن أي بيانات دفع (بطاقة بنكية، عنوان، إلخ). وتخضع معالجة هذه البيانات لسياسة الخصوصية لدى Google.</p>
+
+    <h2>حقوقك (GDPR)</h2>
+    <p>تمنحك اللائحة العامة لحماية البيانات (GDPR) حقوقاً في الاطّلاع على البيانات التي يحتفظ بها عنك أي ناشر تطبيقات، وفي تصحيحها ومحوها ونقلها. ولأن هالون لا يجمع <strong>أي</strong> بيانات، فلا يوجد لدينا ببساطة ما يمكن الاطّلاع عليه أو تصحيحه أو تصديره أو حذفه: هذه الحقوق لا محلّ لها من الناحية العملية. ومع ذلك، يمكنك مراسلتنا بشأن أي سؤال، كما يمكنك تقديم شكوى إلى سلطة حماية البيانات في بلدك إذا رأيتَ أن حقوقك لم تُحترم.</p>
+
+    <h2>الأطفال</h2>
+    <p>هالون تطبيق موجَّه إلى الوالدين والبالغين في المنزل. وهو يصوّر طفلاً، لكن <strong>المطوّر لا يعالج أي بيانات تخصّ هذا الطفل</strong>: فالصور تبقى بين هواتف بيتك.</p>
+
+    <h2>التعديلات على هذه السياسة</h2>
+    <p>إذا تطوّر التطبيق يوماً على نحو يغيّر شيئاً مما سبق، فستُحدَّث هذه الصفحة ويُعدَّل التاريخ في أعلى المستند. أما التزامنا الجوهري — لا جمع للبيانات، ولا خوادم، ولا تتبّع — فلن يتغيّر.</p>
+
+    <h2>التواصل</h2>
+    <p>لأي سؤال حول هذه السياسة أو التطبيق:<br>
+    <strong>البريد الإلكتروني:</strong> <a id="mail-ar" href="mailto:CONTACT">CONTACT</a></p>
+  </main>
+
   <footer id="footer">Halune est éditée par un développeur indépendant (France). · Halune is published by an independent developer based in France.</footer>
 </div>
 <script>
   // E-mail de contact : renseigné ici UNE fois (évite le spam par moissonnage,
   // l'adresse est assemblée au chargement).
   var MAIL = "halune.app@gmail.com";
-  ["mail-fr","mail-en"].forEach(function(id){
-    var a = document.getElementById(id);
-    a.href = "mailto:" + MAIL; a.textContent = MAIL;
+  var LANGS = ["fr","en","de","es","it","zh","ar"];
+  var SUBTITLES = {
+    fr: "Politique de confidentialité — dernière mise à jour : 4 octobre 2026",
+    en: "Privacy Policy — last updated: October 4, 2026",
+    de: "Datenschutzerklärung — zuletzt aktualisiert: 4. Oktober 2026",
+    es: "Política de privacidad — última actualización: 4 de octubre de 2026",
+    it: "Informativa sulla privacy — ultimo aggiornamento: 4 ottobre 2026",
+    zh: "隐私政策 — 最后更新：2026 年 10 月 4 日",
+    ar: "سياسة الخصوصية — آخر تحديث: 4 أكتوبر 2026"
+  };
+  LANGS.forEach(function(l){
+    var a = document.getElementById("mail-" + l);
+    if (a) { a.href = "mailto:" + MAIL; a.textContent = MAIL; }
   });
   function setLang(l){
-    document.getElementById("fr").hidden = l !== "fr";
-    document.getElementById("en").hidden = l !== "en";
-    document.getElementById("btn-fr").className = l === "fr" ? "on" : "";
-    document.getElementById("btn-en").className = l === "en" ? "on" : "";
-    document.getElementById("subtitle").textContent = l === "fr"
-      ? "Politique de confidentialité — dernière mise à jour : 4 octobre 2026"
-      : "Privacy Policy — last updated: October 4, 2026";
+    LANGS.forEach(function(x){
+      var m = document.getElementById(x);
+      if (m) m.hidden = x !== l;
+      var b = document.getElementById("btn-" + x);
+      if (b) b.className = x === l ? "on" : "";
+    });
+    document.getElementById("subtitle").textContent = SUBTITLES[l];
     document.documentElement.lang = l;
+    document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
   }
-  if ((navigator.language || "").toLowerCase().indexOf("fr") !== 0) setLang("en");
+  var nav = (navigator.language || "").toLowerCase().slice(0, 2);
+  setLang(LANGS.indexOf(nav) >= 0 ? nav : "en");
 </script>
 </body>
 </html>
