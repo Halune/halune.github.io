@@ -539,7 +539,8 @@
     document.documentElement.lang = l;
     document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
   }
-  var nav = (navigator.language || "").toLowerCase().slice(0, 2);
+  var q = new URLSearchParams(location.search).get("lang");
+  var nav = (q || navigator.language || "").toLowerCase().slice(0, 2);
   setLang(LANGS.indexOf(nav) >= 0 ? nav : "en");
 </script>
 </body>
