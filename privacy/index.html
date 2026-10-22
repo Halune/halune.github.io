@@ -45,7 +45,8 @@
 <div class="wrap">
   <header>
     <div class="moon" aria-hidden="true"></div>
-    <div><h1>Halune</h1><p class="date" id="subtitle">Politique de confidentialité — dernière mise à jour : 4 octobre 2026</p></div>
+    <div><h1>Halune</h1><p class="date" id="subtitle">Politique de confidentialité — dernière mise à jour : 4 octobre 2026</p>
+    <p class="date"><a id="home-link" href="../">← Accueil Halune</a></p></div>
   </header>
   <nav class="lang" aria-label="Langue / Language">
     <button id="btn-fr" class="on" onclick="setLang('fr')">Français</button>
@@ -536,6 +537,12 @@
       if (b) b.className = x === l ? "on" : "";
     });
     document.getElementById("subtitle").textContent = SUBTITLES[l];
+    var HOME = {
+      fr: "← Accueil Halune", en: "← Halune home", de: "← Zur Startseite",
+      es: "← Inicio", it: "← Home", zh: "← 返回首页", ar: "→ الصفحة الرئيسية"
+    };
+    var h = document.getElementById("home-link");
+    if (h) { h.textContent = HOME[l]; h.href = "../?lang=" + l; }
     document.documentElement.lang = l;
     document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
   }

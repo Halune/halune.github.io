@@ -333,9 +333,9 @@ function setLang(l){
     document.getElementById('btn-' + k).classList.toggle('on', k === l);
   });
 }
-var nav = (navigator.language || 'en').toLowerCase().slice(0, 2);
-if (nav !== 'fr' && L[nav]) setLang(nav);
-else if (nav !== 'fr') setLang('en');
+var q = (new URLSearchParams(location.search).get('lang') || '').toLowerCase().slice(0, 2);
+var nav = q || (navigator.language || 'en').toLowerCase().slice(0, 2);
+setLang(L[nav] ? nav : 'en');
 </script>
 </body>
 </html>
