@@ -53,6 +53,12 @@
   .sub{max-width:520px;margin:0 auto 30px;color:var(--dim);font-size:17px}
   .badge img{height:64px;display:block;margin:0 auto}
   .hero .policy-link{display:inline-block;margin-top:16px;font-size:14px;color:var(--dim)}
+  .qr{display:none}
+  @media (min-width:900px){
+    .qr{display:flex;flex-direction:column;align-items:center;gap:9px;margin-top:24px}
+    .qr img{width:124px;height:124px;border-radius:12px}
+    .qr span{font-size:13px;color:var(--dim)}
+  }
 
   /* ---- sections ---- */
   section{padding:40px 0}
@@ -118,6 +124,10 @@
     <a class="badge" href="https://play.google.com/store/apps/details?id=com.halune.babyphone">
       <img id="badge-img" alt="Disponible sur Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/fr_badge_web_generic.png">
     </a>
+    <div class="qr">
+      <img src="img/qr-play.svg" alt="" aria-hidden="true">
+      <span data-i="qrcap">Scannez pour installer sur votre téléphone</span>
+    </div>
     <br><a class="policy-link" href="privacy/" data-i="policy">Politique de confidentialité</a>
   </div>
 </div>
@@ -197,7 +207,8 @@ fr:{
   policy:"Politique de confidentialité",
   madein:"Développée en France, en toute indépendance.",
   alts:["Vue parent : vidéo en direct de la chambre","Alerte pleurs sur écran verrouillé","Berceuses pour accompagner la nuit"],
-  badge:"fr", badgeAlt:"Disponible sur Google Play"
+  badge:"fr", badgeAlt:"Disponible sur Google Play",
+  qrcap:"Scannez pour installer sur votre téléphone"
 },
 en:{
   tagline:"The baby monitor that stays home.",
@@ -215,7 +226,8 @@ en:{
   policy:"Privacy policy",
   madein:"Independently built in France.",
   alts:["Parent view: live video from the nursery","Cry alert on the lock screen","Lullabies for gentle nights"],
-  badge:"en", badgeAlt:"Get it on Google Play"
+  badge:"en", badgeAlt:"Get it on Google Play",
+  qrcap:"Scan to install on your phone"
 },
 de:{
   tagline:"Das Babyphone, das zu Hause bleibt.",
@@ -233,7 +245,8 @@ de:{
   policy:"Datenschutzerklärung",
   madein:"Unabhängig entwickelt in Frankreich.",
   alts:["Elternansicht: Live-Video aus dem Kinderzimmer","Wein-Alarm auf dem Sperrbildschirm","Schlaflieder für sanfte Nächte"],
-  badge:"de", badgeAlt:"Jetzt bei Google Play"
+  badge:"de", badgeAlt:"Jetzt bei Google Play",
+  qrcap:"Zum Installieren mit dem Handy scannen"
 },
 es:{
   tagline:"El vigilabebés que se queda en casa.",
@@ -251,7 +264,8 @@ es:{
   policy:"Política de privacidad",
   madein:"Desarrollada en Francia, con total independencia.",
   alts:["Vista de padres: vídeo en directo de la habitación","Alerta de llanto en la pantalla bloqueada","Nanas para noches tranquilas"],
-  badge:"es", badgeAlt:"Disponible en Google Play"
+  badge:"es", badgeAlt:"Disponible en Google Play",
+  qrcap:"Escanea para instalar en tu teléfono"
 },
 it:{
   tagline:"Il baby monitor che resta a casa tua.",
@@ -269,7 +283,8 @@ it:{
   policy:"Informativa sulla privacy",
   madein:"Sviluppata in Francia, in piena indipendenza.",
   alts:["Vista genitori: video in diretta dalla cameretta","Avviso di pianto a schermo bloccato","Ninne nanne per notti serene"],
-  badge:"it", badgeAlt:"Disponibile su Google Play"
+  badge:"it", badgeAlt:"Disponibile su Google Play",
+  qrcap:"Inquadra per installare sul telefono"
 },
 zh:{
   tagline:"画面不出家门的婴儿监视器。",
@@ -287,7 +302,8 @@ zh:{
   policy:"隐私政策",
   madein:"由法国独立开发者用心打造。",
   alts:["家长端：宝宝房间实时画面","锁屏上的哭声提醒","伴睡摇篮曲"],
-  badge:"zh-cn", badgeAlt:"下载应用，请到 Google Play"
+  badge:"zh-cn", badgeAlt:"下载应用，请到 Google Play",
+  qrcap:"扫码安装到手机"
 },
 ar:{
   tagline:"جهاز مراقبة الطفل الذي لا يغادر بيتك.",
@@ -305,7 +321,8 @@ ar:{
   policy:"سياسة الخصوصية",
   madein:"تطبيق من مطوّر مستقل، صُنع بعناية في فرنسا.",
   alts:["شاشة الوالدين: فيديو مباشر من غرفة الطفل","تنبيه بكاء على شاشة القفل","تهويدات تُرافقه إلى النوم"],
-  badge:"ar", badgeAlt:"احصل عليه من Google Play"
+  badge:"ar", badgeAlt:"احصل عليه من Google Play",
+  qrcap:"امسح الرمز للتثبيت على هاتفك"
 }
 };
 
