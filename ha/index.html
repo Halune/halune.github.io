@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halune × Home Assistant</title>
+<meta name="description" content="Intégrer le babyphone Halune à Home Assistant : flux caméra local via go2rtc (WHEP), re-export RTSP pour Frigate, VLC ou tout NVR. 100 % local, sans cloud. Halune baby monitor in Home Assistant via go2rtc.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#16131f; --panel:#211c2e; --ink:#f2ede4; --dim:#aba3bd;
+    --amber:#eea55a; --sage:#9cc7a5; --stroke:#363048;
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 64px}
+  a{color:var(--sage)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+  header{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .moon{width:46px;height:46px;border-radius:50%;background:var(--panel);
+    position:relative;flex:none;box-shadow:0 0 28px rgba(238,165,90,.25)}
+  .moon::before{content:"";position:absolute;inset:8px;border-radius:50%;
+    background:linear-gradient(180deg,#f6c486,#eea55a)}
+  .moon::after{content:"";position:absolute;top:10px;left:19px;width:24px;height:24px;
+    border-radius:50%;background:var(--panel)}
+  h1{font-size:26px;margin:0}
+  .date{color:var(--dim);font-size:14px;margin:4px 0 0}
+  .lang{margin:18px 0 10px;display:flex;gap:10px}
+  .lang button{background:var(--panel);color:var(--dim);border:1px solid var(--stroke);
+    border-radius:20px;padding:7px 18px;font:inherit;font-size:14px;cursor:pointer}
+  .lang button.on{color:var(--ink);border-color:var(--amber)}
+  h2{font-size:19px;margin:34px 0 10px}
+  p,li{color:var(--dim)} strong{color:var(--ink);font-weight:600}
+  ol,ul{padding-inline-start:22px}
+  .lead{font-size:17px;color:var(--ink);background:var(--panel);
+    border:1px solid var(--stroke);border-radius:14px;padding:16px 18px}
+  pre{background:#120f1a;border:1px solid var(--stroke);border-radius:12px;
+    padding:14px 16px;overflow-x:auto;font-size:14px;line-height:1.5;direction:ltr;text-align:left}
+  code{font-family:Consolas,Menlo,monospace;color:var(--ink)}
+  p code,li code{background:var(--panel);border:1px solid var(--stroke);
+    border-radius:6px;padding:1px 6px;font-size:13.5px}
+  .note{border-inline-start:3px solid var(--amber);padding:2px 0 2px 14px;margin:14px 0}
+  footer{margin-top:44px;color:var(--dim);font-size:14px;border-top:1px solid var(--stroke);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="moon" aria-hidden="true"></div>
+    <div><h1>Halune × Home Assistant</h1>
+    <p class="date"><a href="../" id="home-link">← Accueil Halune</a></p></div>
+  </header>
+  <nav class="lang" aria-label="Langue / Language">
+    <button id="btn-fr" class="on" onclick="setLang('fr')">Français</button>
+    <button id="btn-en" onclick="setLang('en')">English</button>
+  </nav>
+
+  <main id="fr">
+    <p class="lead">Le flux vidéo de la chambre de bébé dans votre tableau de bord Home Assistant, votre Frigate, votre VLC ou n'importe quel NVR — <strong>100 % local, sans aucun cloud</strong>. Halune expose un flux WHEP standard que go2rtc consomme directement : H.264 matériel + Opus, aucun transcodage.</p>
+
+    <h2>Prérequis</h2>
+    <ul>
+      <li><a href="https://play.google.com/store/apps/details?id=com.halune.babyphone">Halune</a> installée sur le téléphone de la chambre (fonction Premium — incluse dans l'essai gratuit de 3 mois au lancement) ;</li>
+      <li><a href="https://github.com/AlexxIT/go2rtc">go2rtc</a> 1.9 ou plus récent : le module complémentaire Home Assistant, celui intégré à Frigate, ou le simple binaire ;</li>
+      <li>le téléphone bébé et votre serveur sur le <strong>même réseau local</strong> (le flux Home Assistant ne sort jamais de chez vous).</li>
+    </ul>
+
+    <h2>Étape 1 — activer le flux dans Halune</h2>
+    <ol>
+      <li>Sur le téléphone de la chambre, ouvrez l'écran de la chambre puis la tuile <strong>Home Assistant</strong>.</li>
+      <li>Activez le flux : Halune affiche l'adresse complète, du type<br><code>http://192.168.1.42:8765/whep?token=XXXXXXXX</code></li>
+      <li>Touchez l'adresse pour la <strong>copier</strong>. (Le jeton se régénère d'un geste si vous voulez révoquer l'accès.)</li>
+    </ol>
+
+    <h2>Étape 2 — déclarer la source dans go2rtc</h2>
+    <p>Dans <code>go2rtc.yaml</code>, collez l'adresse copiée, préfixée de <code>webrtc:</code> :</p>
+    <pre><code>streams:
+  chambre_bebe: webrtc:http://192.168.1.42:8765/whep?token=XXXXXXXX</code></pre>
+    <p>Redémarrez go2rtc, puis vérifiez dans son interface :<br>
+    <code>http://&lt;hôte-go2rtc&gt;:1984/stream.html?src=chambre_bebe&amp;mode=webrtc</code></p>
+
+    <h2>Étape 3 — afficher la caméra</h2>
+    <p><strong>Dans Home Assistant</strong> : avec le module go2rtc (ou l'intégration <em>WebRTC Camera</em>), la source <code>chambre_bebe</code> apparaît comme une caméra à ajouter au tableau de bord.</p>
+    <p><strong>Partout ailleurs</strong> : go2rtc ré-expose automatiquement le flux en RTSP —</p>
+    <pre><code>rtsp://&lt;hôte-go2rtc&gt;:8554/chambre_bebe</code></pre>
+    <p>— lisible par Frigate, VLC, Scrypted ou n'importe quel NVR.</p>
+
+    <h2>Dépannage</h2>
+    <ul>
+      <li><strong>« SetRemoteDescription called with no ice-ufrag »</strong> dans le lecteur go2rtc : le créneau WHEP est occupé par un ancien pair. Halune n'accepte <strong>qu'un seul lecteur WHEP</strong> (c'est go2rtc qui redistribue à tous vos clients) : désactivez puis réactivez la tuile Home Assistant dans Halune pour purger, et rechargez.</li>
+      <li><strong>Pas d'image</strong> : vérifiez que le téléphone et le serveur sont sur le même réseau (pas de réseau invité), et que l'adresse collée est exactement celle affichée par Halune — le port peut changer si vous l'avez reconfiguré.</li>
+      <li><strong>Jeton compromis ?</strong> Régénérez-le dans la tuile Home Assistant et mettez <code>go2rtc.yaml</code> à jour.</li>
+    </ul>
+
+    <h2>Vie privée</h2>
+    <p>Le jeton est stocké uniquement sur le téléphone, et le flux chiffré n'est envoyé qu'à <strong>votre</strong> serveur, chez vous. Comme tout Halune : <a href="../privacy/">pas une promesse, une architecture</a>.</p>
+
+    <h2>La suite ? C'est vous qui votez</h2>
+    <p>Quatre pistes à l'étude — sans promesse ni date, mais vos votes décident de l'ordre : un 👍 sur l'issue GitHub = une voix.</p>
+    <ul>
+      <li><strong>Webhooks locaux</strong> — un POST JSON vers votre serveur à chaque événement (pleurs, mouvement, batterie…) : Node-RED, Jeedom, Domoticz, sans rien installer. <a href="https://github.com/halune/feedback/issues/1">Voter 👍</a></li>
+      <li><strong>Capteurs MQTT</strong> — niveau sonore, pleurs, mouvement, batterie, auto-découverts par Home Assistant. <a href="https://github.com/halune/feedback/issues/2">Voter 👍</a></li>
+      <li><strong>Intégration native (HACS)</strong> — découverte automatique, caméra + capteurs en deux clics, blueprints d'automatisations fournis. <a href="https://github.com/halune/feedback/issues/3">Voter 👍</a></li>
+      <li><strong>Wear OS</strong> — les alertes et le niveau sonore au poignet. <a href="https://github.com/halune/feedback/issues/4">Voter 👍</a></li>
+    </ul>
+    <p><a href="https://github.com/halune/feedback/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc">Classement en direct</a> · Une autre idée, un bug ? <a href="https://github.com/halune/feedback/issues/new">Ouvrez une issue</a> ou <a href="mailto:halune.app@gmail.com">écrivez-nous</a> — tout est lu.</p>
+  </main>
+
+  <main id="en" hidden>
+    <p class="lead">Your nursery's video stream in your Home Assistant dashboard, your Frigate, VLC or any NVR — <strong>100% local, no cloud whatsoever</strong>. Halune exposes a standard WHEP stream that go2rtc consumes directly: hardware H.264 + Opus, no transcoding.</p>
+
+    <h2>Prerequisites</h2>
+    <ul>
+      <li><a href="https://play.google.com/store/apps/details?id=com.halune.babyphone">Halune</a> installed on the nursery phone (a Premium feature — included in the 3-month free launch trial);</li>
+      <li><a href="https://github.com/AlexxIT/go2rtc">go2rtc</a> 1.9 or newer: the Home Assistant add-on, the one embedded in Frigate, or the plain binary;</li>
+      <li>the nursery phone and your server on the <strong>same local network</strong> (the Home Assistant stream never leaves your home).</li>
+    </ul>
+
+    <h2>Step 1 — enable the stream in Halune</h2>
+    <ol>
+      <li>On the nursery phone, open the room screen and the <strong>Home Assistant</strong> tile.</li>
+      <li>Enable the stream: Halune shows the full address, like<br><code>http://192.168.1.42:8765/whep?token=XXXXXXXX</code></li>
+      <li>Tap the address to <strong>copy</strong> it. (The token can be regenerated in one tap to revoke access.)</li>
+    </ol>
+
+    <h2>Step 2 — declare the source in go2rtc</h2>
+    <p>In <code>go2rtc.yaml</code>, paste the copied address, prefixed with <code>webrtc:</code>:</p>
+    <pre><code>streams:
+  baby_room: webrtc:http://192.168.1.42:8765/whep?token=XXXXXXXX</code></pre>
+    <p>Restart go2rtc, then check in its web UI:<br>
+    <code>http://&lt;go2rtc-host&gt;:1984/stream.html?src=baby_room&amp;mode=webrtc</code></p>
+
+    <h2>Step 3 — show the camera</h2>
+    <p><strong>In Home Assistant</strong>: with the go2rtc add-on (or the <em>WebRTC Camera</em> integration), the <code>baby_room</code> source shows up as a camera you can add to your dashboard.</p>
+    <p><strong>Everywhere else</strong>: go2rtc automatically re-exposes the stream over RTSP —</p>
+    <pre><code>rtsp://&lt;go2rtc-host&gt;:8554/baby_room</code></pre>
+    <p>— playable by Frigate, VLC, Scrypted or any NVR.</p>
+
+    <h2>Troubleshooting</h2>
+    <ul>
+      <li><strong>"SetRemoteDescription called with no ice-ufrag"</strong> in the go2rtc player: the WHEP slot is held by a stale peer. Halune accepts <strong>one WHEP reader only</strong> (go2rtc redistributes to all your clients): toggle the Home Assistant tile off and on in Halune to purge it, then reload.</li>
+      <li><strong>No picture</strong>: make sure the phone and the server are on the same network (not a guest network), and that the pasted address is exactly the one Halune shows — the port may differ if you reconfigured it.</li>
+      <li><strong>Token compromised?</strong> Regenerate it in the Home Assistant tile and update <code>go2rtc.yaml</code>.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>The token is stored on the phone only, and the encrypted stream is sent to <strong>your</strong> server, in your home, and nowhere else. Like everything in Halune: <a href="../privacy/">not a promise — an architecture</a>.</p>
+
+    <h2>What's next? You vote</h2>
+    <p>Four ideas under consideration — no promises, no dates, but your votes set the order: a 👍 on the GitHub issue is a vote.</p>
+    <ul>
+      <li><strong>Local webhooks</strong> — a JSON POST to your server on every event (cry, motion, battery…): Node-RED, Jeedom, Domoticz, nothing to install. <a href="https://github.com/halune/feedback/issues/1">Vote 👍</a></li>
+      <li><strong>MQTT sensors</strong> — sound level, cry, motion, battery, auto-discovered by Home Assistant. <a href="https://github.com/halune/feedback/issues/2">Vote 👍</a></li>
+      <li><strong>Native integration (HACS)</strong> — auto-discovery, camera + sensors in two clicks, automation blueprints included. <a href="https://github.com/halune/feedback/issues/3">Vote 👍</a></li>
+      <li><strong>Wear OS</strong> — alerts and sound level on your wrist. <a href="https://github.com/halune/feedback/issues/4">Vote 👍</a></li>
+    </ul>
+    <p><a href="https://github.com/halune/feedback/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc">Live scoreboard</a> · Another idea, a bug? <a href="https://github.com/halune/feedback/issues/new">Open an issue</a> or <a href="mailto:halune.app@gmail.com">write to us</a> — everything gets read.</p>
+  </main>
+
+  <footer>
+    <span>© 2026 Halune — </span><a href="../" data-home>Accueil</a> · <a href="../privacy/" id="policy-link">Politique de confidentialité</a>
+  </footer>
+</div>
+
+<script>
+function setLang(l){
+  document.documentElement.lang = l;
+  document.getElementById('fr').hidden = l !== 'fr';
+  document.getElementById('en').hidden = l !== 'en';
+  document.getElementById('btn-fr').classList.toggle('on', l === 'fr');
+  document.getElementById('btn-en').classList.toggle('on', l === 'en');
+  document.getElementById('home-link').textContent = l === 'fr' ? '← Accueil Halune' : '← Halune home';
+  document.getElementById('policy-link').textContent = l === 'fr' ? 'Politique de confidentialité' : 'Privacy policy';
+  document.querySelector('[data-home]').textContent = l === 'fr' ? 'Accueil' : 'Home';
+}
+var q = new URLSearchParams(location.search).get('lang');
+var nav = (q || navigator.language || '').toLowerCase().slice(0, 2);
+if (nav !== 'fr') setLang('en');
+</script>
+</body>
+</html>
